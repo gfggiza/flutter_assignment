@@ -1,0 +1,362 @@
+openapi: 3.0.1
+info:
+  title: Cute Pets API
+  description: API for managing CuteCats and CuteDogs resources
+  version: 1.0.0
+
+servers:
+  - url: https://api.cutepets.example.com/v1
+    description: Main API Server
+
+paths:
+  /cutecats:
+    get:
+      summary: Retrieve a list of CuteCats
+      operationId: getCuteCats
+      tags:
+        - CuteCats
+      responses:
+        '200':
+          description: A list of cute cats
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      description: The unique identifier for the cute cat
+                    name:
+                      type: string
+                      description: The name of the cute cat
+                    breed:
+                      type: string
+                      description: The breed of the cute cat
+                    age:
+                      type: integer
+                      description: The age of the cute cat in years
+                    image_url:
+                      type: string
+                      description: URL to an image of the cute cat
+        '500':
+          description: Server error
+
+    post:
+      summary: Add a new CuteCat
+      operationId: addCuteCat
+      tags:
+        - CuteCats
+      requestBody:
+        description: Data for the new cute cat
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: The name of the cute cat
+                breed:
+                  type: string
+                  description: The breed of the cute cat
+                age:
+                  type: integer
+                  description: The age of the cute cat in years
+                image_url:
+                  type: string
+                  description: URL to an image of the cute cat
+      responses:
+        '201':
+          description: Successfully added a new cute cat
+        '400':
+          description: Invalid input
+        '500':
+          description: Server error
+
+  /cutecats/{id}:
+    get:
+      summary: Get details of a specific CuteCat
+      operationId: getCuteCat
+      tags:
+        - CuteCats
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The ID of the cute cat
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Details of the cute cat
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  name:
+                    type: string
+                  breed:
+                    type: string
+                  age:
+                    type: integer
+                  image_url:
+                    type: string
+        '404':
+          description: CuteCat not found
+        '500':
+          description: Server error
+
+    put:
+      summary: Update a specific CuteCat
+      operationId: updateCuteCat
+      tags:
+        - CuteCats
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The ID of the cute cat
+          schema:
+            type: integer
+      requestBody:
+        description: Data for updating the cute cat
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                breed:
+                  type: string
+                age:
+                  type: integer
+                image_url:
+                  type: string
+      responses:
+        '200':
+          description: Successfully updated the cute cat
+        '400':
+          description: Invalid input
+        '404':
+          description: CuteCat not found
+        '500':
+          description: Server error
+
+    delete:
+      summary: Delete a specific CuteCat
+      operationId: deleteCuteCat
+      tags:
+        - CuteCats
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The ID of the cute cat
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Successfully deleted the cute cat
+        '404':
+          description: CuteCat not found
+        '500':
+          description: Server error
+
+  /cutedogs:
+    get:
+      summary: Retrieve a list of CuteDogs
+      operationId: getCuteDogs
+      tags:
+        - CuteDogs
+      responses:
+        '200':
+          description: A list of cute dogs
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      description: The unique identifier for the cute dog
+                    name:
+                      type: string
+                      description: The name of the cute dog
+                    breed:
+                      type: string
+                      description: The breed of the cute dog
+                    age:
+                      type: integer
+                      description: The age of the cute dog in years
+                    image_url:
+                      type: string
+                      description: URL to an image of the cute dog
+        '500':
+          description: Server error
+
+    post:
+      summary: Add a new CuteDog
+      operationId: addCuteDog
+      tags:
+        - CuteDogs
+      requestBody:
+        description: Data for the new cute dog
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: The name of the cute dog
+                breed:
+                  type: string
+                  description: The breed of the cute dog
+                age:
+                  type: integer
+                  description: The age of the cute dog in years
+                image_url:
+                  type: string
+                  description: URL to an image of the cute dog
+      responses:
+        '201':
+          description: Successfully added a new cute dog
+        '400':
+          description: Invalid input
+        '500':
+          description: Server error
+
+  /cutedogs/{id}:
+    get:
+      summary: Get details of a specific CuteDog
+      operationId: getCuteDog
+      tags:
+        - CuteDogs
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The ID of the cute dog
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Details of the cute dog
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  name:
+                    type: string
+                  breed:
+                    type: string
+                  age:
+                    type: integer
+                  image_url:
+                    type: string
+        '404':
+          description: CuteDog not found
+        '500':
+          description: Server error
+
+    put:
+      summary: Update a specific CuteDog
+      operationId: updateCuteDog
+      tags:
+        - CuteDogs
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The ID of the cute dog
+          schema:
+            type: integer
+      requestBody:
+        description: Data for updating the cute dog
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                breed:
+                  type: string
+                age:
+                  type: integer
+                image_url:
+                  type: string
+      responses:
+        '200':
+          description: Successfully updated the cute dog
+        '400':
+          description: Invalid input
+        '404':
+          description: CuteDog not found
+        '500':
+          description: Server error
+
+    delete:
+      summary: Delete a specific CuteDog
+      operationId: deleteCuteDog
+      tags:
+        - CuteDogs
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The ID of the cute dog
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Successfully deleted the cute dog
+        '404':
+          description: CuteDog not found
+        '500':
+          description: Server error
+
+components:
+  schemas:
+    CuteCat:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        breed:
+          type: string
+        age:
+          type: integer
+        image_url:
+          type: string
+
+    CuteDog:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        breed:
+          type: string
+        age:
+          type: integer
+        image_url:
+          type: string
