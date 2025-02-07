@@ -11,7 +11,7 @@ class AppPI extends StatelessWidget {
   const AppPI({
     super.key,
     required this.itemTitle,
-    required this.tagName,
+    required this.type,
     required this.year,
     this.subTags,
     required this.contentInfo,
@@ -20,7 +20,7 @@ class AppPI extends StatelessWidget {
   });
 
   final String itemTitle;
-  final String tagName;
+  final String type;
   final String year;
   final List<String>? subTags;
   final String contentInfo;
@@ -48,7 +48,7 @@ class AppPI extends StatelessWidget {
           ),
           const SizedBox(height: _InternalValues.textPadding),
           AppChip.filled(
-            label: tagName,
+            label: type,
             year: year,
           ),
           const SizedBox(height: _InternalValues.smallerPadding),

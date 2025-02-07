@@ -1,5 +1,6 @@
 import 'package:assignment/api/gen/watchmode_api.models.swagger.dart';
 import 'package:assignment/services/details_service.dart';
+import 'package:assignment/ui/enums/sourcetype_enum.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -74,7 +75,7 @@ class _DetailsPageState extends State<DetailsPage> {
                       child: AppPI(
                         image: NetworkImage(_details[0].poster),
                         itemTitle: _details[0].title,
-                        tagName: _details[0].type.toString(),
+                        type: getSourceTypeName(_details[0].type),
                         year: _details[0].year.toString(),
                         subTags: _details[0].genreNames,
                         contentInfo: _details[0].plotOverview,

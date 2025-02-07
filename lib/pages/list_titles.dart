@@ -1,6 +1,7 @@
 import 'package:assignment/api/gen/watchmode_api.enums.swagger.dart';
 import 'package:assignment/api/gen/watchmode_api.models.swagger.dart';
 import 'package:assignment/services/titleresults_service.dart';
+import 'package:assignment/ui/enums/sourcetype_enum.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../navigation/routes.dart';
@@ -77,9 +78,11 @@ class _ListTitlesPageState extends State<ListTitlesPage> {
           width: _InternalValues.imgSize,
           height: _InternalValues.imgSize,
         ),
-        Text(
-          widget.source.name,
-          style: const TextStyle(color: AppColors.textColor),
+        Flexible(
+          child: Text(
+            widget.source.name,
+            style: const TextStyle(color: AppColors.textColor),
+          ),
         ),
       ],
     );
@@ -96,7 +99,7 @@ class _ListTitlesPageState extends State<ListTitlesPage> {
                 extra: entry.id, // Pass the selected item data
               ),
               itemTitle: entry.title,
-              chipName: _getSourceTypeName(entry.type),
+              chipName: getSourceTypeName(entry.type),
               year: entry.year.toString(),
               chip: const AppChip(),
             ),
@@ -114,26 +117,19 @@ class _ListTitlesPageState extends State<ListTitlesPage> {
           ? const Center(child: CircularProgressIndicator())
           : _error != null
               ? Center(child: SelectableText(_error!))
-              : SingleChildScrollView(
-                  child: _buildList(context),
-                ),
+              : _titlesResult.isEmpty
+                  ? const Center(
+                      child: Text(
+                        'No content available',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                        ),
+                      ),
+                    )
+                  : SingleChildScrollView(
+                      child: _buildList(context),
+                    ),
     );
-  }
-
-  String _getSourceTypeName(TitleType? type) {
-    switch (type) {
-      case TitleType.movie:
-        return 'Movie';
-      case TitleType.tvSeries:
-        return 'TV Series';
-      case TitleType.tvSpecial:
-        return 'TV Special';
-      case TitleType.tvMiniseries:
-        return 'TV Miniseries';
-      case TitleType.shortFilm:
-        return 'Short Film';
-      default:
-        return 'Unknown';
-    }
   }
 }
