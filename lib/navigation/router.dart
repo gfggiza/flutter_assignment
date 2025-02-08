@@ -1,18 +1,19 @@
 import 'package:assignment/api/gen/watchmode_api.models.swagger.dart' as gen;
-import 'package:assignment/navigation/routes.dart';
-import 'package:assignment/pages/details.dart';
-import 'package:assignment/pages/home.dart';
-import 'package:assignment/pages/list_titles.dart';
-import 'package:assignment/pages/sources.dart';
+import 'package:assignment/features/details/details_page.dart';
+import 'package:assignment/features/sources/sources_page.dart';
+import 'package:assignment/features/titleslist/titleslist_page.dart';
 import 'package:go_router/go_router.dart';
+
+class AppRoutes {
+  static const String home = '/';
+  static const String sources = '/sources';
+  static const String listTitles = '/list_titles';
+  static const String details = '/details';
+}
 
 final appRouter = GoRouter(
   initialLocation: '/sources',
   routes: [
-    GoRoute(
-      path: AppRoutes.home,
-      builder: (context, state) => const HomePage(),
-    ),
     GoRoute(
       path: AppRoutes.sources,
       builder: (context, state) => const SourcesPage(),
@@ -23,7 +24,7 @@ final appRouter = GoRouter(
         // print('Navigating to ListTitles with data: ${state.extra}');
         final source =
             state.extra! as gen.SourceSummary; // Remove forced unwrap
-        return ListTitlesPage(source: source); // Pass nullable source
+        return TitlesListPage(source: source); // Pass nullable source
       },
     ),
     GoRoute(

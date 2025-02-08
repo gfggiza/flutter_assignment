@@ -100,9 +100,9 @@ components:
           type: string
           description: The name of the source (e.g., Netflix)
         type:
+          type: string
           description: The type of the source
-          schema:
-            $ref: '#/components/schemas/SourceType'
+          enum: [ sub, free, purchase, tve ]
         logo_100px:
           type: string
           format: uri
