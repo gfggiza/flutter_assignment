@@ -17,7 +17,7 @@ class SourcesPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => SourcesCubit(
-        context.read<SourcesService>(),
+        context.watch<SourcesService>(),
       )..loadSources(),
       child: const SourcesView(),
     );

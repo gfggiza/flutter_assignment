@@ -19,7 +19,7 @@ class DetailsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => DetailsCubit(
-        context.read<DetailsService>(),
+        context.watch<DetailsService>(),
       )..loadDetails(titleId),
       child: DetailsView(titleId: titleId),
     );

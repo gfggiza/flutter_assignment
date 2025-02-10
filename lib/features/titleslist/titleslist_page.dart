@@ -20,7 +20,7 @@ class TitlesListPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => TitlesListCubit(
-        context.read<TitlesService>(),
+        context.watch<TitlesService>(),
       )..loadTitles(source),
       child: TitlesListView(source: source),
     );
