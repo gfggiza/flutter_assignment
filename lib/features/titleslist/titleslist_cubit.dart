@@ -3,9 +3,8 @@ import 'package:assignment/features/titleslist/data/titleslist_service.dart';
 import 'package:assignment/utils/base_resourcestate_cubit.dart';
 
 class TitlesListCubit extends BaseResourceCubit<List<TitleSummary>> {
-  final TitlesService _repository;
-
   TitlesListCubit(this._repository) : super();
+  final TitlesService _repository;
 
   Future<void> loadTitles(SourceSummary source) => executeRequest(
         () => _repository.getTitlesList(source),

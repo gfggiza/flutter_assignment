@@ -61,7 +61,10 @@ class DetailsView extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  SelectableText(error.error ?? 'An error occurred'),
+                  SelectableText(
+                    error.error ?? 'An error occurred',
+                    style: const TextStyle(color: Colors.white),
+                  ),
                   const SizedBox(height: 16),
                   ElevatedButton(
                     onPressed: () =>

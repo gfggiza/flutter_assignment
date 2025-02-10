@@ -100,7 +100,10 @@ class TitlesListView extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  SelectableText(error.error ?? 'An error occurred'),
+                  SelectableText(
+                    error.error ?? 'An error occurred',
+                    style: const TextStyle(color: Colors.white),
+                  ),
                   ElevatedButton(
                     onPressed: () =>
                         context.read<TitlesListCubit>().loadTitles(source),

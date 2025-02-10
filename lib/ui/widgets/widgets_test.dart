@@ -81,7 +81,7 @@ class WidgetsTestPage extends StatelessWidget {
                 print('Carousel Item $index');
               }
             },
-          )
+          ),
         ],
       ),
     );

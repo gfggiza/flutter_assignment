@@ -36,7 +36,12 @@ class SourcesView extends StatelessWidget {
           return state.map(
             initial: (_) => Container(),
             loading: (_) => const Center(child: CircularProgressIndicator()),
-            error: (err) => Center(child: Text(err.error ?? '')),
+            error: (err) => Center(
+              child: SelectableText(
+                err.error ?? 'An error occurred',
+                style: const TextStyle(color: Colors.white),
+              ),
+            ),
             success: (state) {
               final sourcesByType = groupBy(
                 state.data ?? [],
